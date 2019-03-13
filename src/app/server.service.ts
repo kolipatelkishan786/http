@@ -28,10 +28,19 @@ export class ServerService {
           return data;
         }
       )
-  .catch(
-      (error: Response) => {
-        return Observable.throw('Something want Wrong!');
-      }
-    );
+      .catch(
+        (error: Response) => {
+          return Observable.throw('Something want Wrong!');
+        }
+      );
+  }
+
+  getAppName() {
+    return this.http.get('https://http-8afc5.firebaseio.com/appName.json')
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      );
   }
 }
