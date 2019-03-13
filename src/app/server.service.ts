@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class ServerService {
@@ -17,7 +18,7 @@ export class ServerService {
   }
 
   getServers() {
-    return this.http.get('https://http-8afc5.firebaseio.com/data.json')
+    return this.http.get('https://http-8afc5.firebaseio.com/data')
       .map(
         (response: any) => {
           const data = response.json();
@@ -26,6 +27,11 @@ export class ServerService {
           }
           return data;
         }
-      );
+      )
+  .catch(
+      (error: Response) => {
+        return Observable.throw('Something want Wrong!');
+      }
+    );
   }
 }
