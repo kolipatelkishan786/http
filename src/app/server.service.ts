@@ -10,11 +10,13 @@ export class ServerService {
 
   storeservers(servers: any[]) {
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('https://http-8afc5.firebaseio.com/data.json', servers,
+    // return this.http.post('https://http-8afc5.firebaseio.com/data.json', servers,
+    //   {headers: headers});
+    return this.http.put('https://http-8afc5.firebaseio.com/data.json', servers,
       {headers: headers});
   }
 
   getServers() {
-    return this.http.get('https://http-8afc5.firebaseio.com/data.json')
+    return this.http.get('https://http-8afc5.firebaseio.com/data.json');
   }
 }
