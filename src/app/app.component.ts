@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Response} from '@angular/http';
 import {ServerService} from './server.service';
 
 @Component({
@@ -38,6 +39,15 @@ export class AppComponent {
     );
   }
 
+  onGet() {
+    this.serverservice.getServers().subscribe(
+      (response: Response) => {
+        const data = response.json();
+        console.log(data);
+      },
+      (error) => console.log(error)
+    );
+  }
 
   private generateId() {
     return Math.round(Math.random() * 10000);
