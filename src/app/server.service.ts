@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Headers} from '@angular/http';
+import {Headers, Response} from '@angular/http';
+
 
 @Injectable()
 export class ServerService {
@@ -17,6 +18,12 @@ export class ServerService {
   }
 
   getServers() {
-    return this.http.get('https://http-8afc5.firebaseio.com/data.json');
+    return this.http.get('https://http-8afc5.firebaseio.com/data.json')
+      .map(
+        (response: Response) => {
+          const data = response.json();
+          return data;
+        }
+      );
   }
 }
